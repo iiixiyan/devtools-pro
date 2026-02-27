@@ -1,6 +1,6 @@
 {
   "name": "devtools-pro",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Professional Developer Tools Platform",
   "main": "src/index.js",
   "type": "module",
@@ -20,7 +20,10 @@
     "productivity",
     "SaaS",
     "open-source",
-    "ai"
+    "ai",
+    "code-generator",
+    "api-docs",
+    "unit-tests"
   ],
   "author": "iiixiyan",
   "license": "MIT",

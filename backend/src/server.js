@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
 import redis from 'redis';
-import codeRoutes from './routes/code.js';
+import routes from './routes/index.js';
 
 dotenv.config();
 
@@ -37,23 +37,7 @@ const redisClient = redis.createClient({
 redisClient.on('error', (err) => console.error('Redis Client Error', err));
 
 // Routes
-app.use('/api/v1/code', codeRoutes);
-
-// Health check
-app.get('/api/v1/health', async (req, res) => {
-  try {
-    const dbRes = await pool.query('SELECT NOW()');
-    const redisRes = await redisClient.ping();
-    res.json({
-      status: 'ok',
-      database: 'connected',
-      redis: redisRes === 'PONG' ? 'connected' : 'disconnected',
-      timestamp: new Date().toISOString()
-    });
-  } catch (error) {
-    res.status(500).json({ status: 'error', message: error.message });
-  }
-});
+app.use('/', routes);
 
 // Start server
 app.listen(PORT, () => {

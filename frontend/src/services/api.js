@@ -49,6 +49,131 @@ const api = {
     return response.json();
   },
 
+  // Template generation
+  generateFromTemplate: async (templateId, parameters) => {
+    const response = await fetch(`${API_URL}/api/v1/templates/generate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ templateId, parameters })
+    });
+    return response.json();
+  },
+
+  getTemplates: async (category = null, language = null) => {
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    if (language) params.append('language', language);
+
+    const url = params.toString()
+      ? `${API_URL}/api/v1/templates/templates?${params}`
+      : `${API_URL}/api/v1/templates/templates`;
+
+    const response = await fetch(url);
+    return response.json();
+  },
+
+  getTemplate: async (id) => {
+    const response = await fetch(`${API_URL}/api/v1/templates/templates/${id}`);
+    return response.json();
+  },
+
+  // API documentation
+  generateAPIDocs: async (apiDefinition) => {
+    const response = await fetch(`${API_URL}/api/v1/api-docs/generate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ apiDefinition })
+    });
+    return response.json();
+  },
+
+  generateSwagger: async (apiDefinition) => {
+    const response = await fetch(`${API_URL}/api/v1/api-docs/swagger`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ apiDefinition })
+    });
+    return response.json();
+  },
+
+  generatePostman: async (apiDefinition) => {
+    const response = await fetch(`${API_URL}/api/v1/api-docs/postman`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ apiDefinition })
+    });
+    return response.json();
+  },
+
+  generateHTMLDocs: async (apiDefinition) => {
+    const response = await fetch(`${API_URL}/api/v1/api-docs/html`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ apiDefinition })
+    });
+    return response.json();
+  },
+
+  // Test generation
+  generateUnitTests: async (code, language = 'javascript') => {
+    const response = await fetch(`${API_URL}/api/v1/tests/unit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ code, language })
+    });
+    return response.json();
+  },
+
+  generateIntegrationTests: async (apiEndpoints, data) => {
+    const response = await fetch(`${API_URL}/api/v1/tests/integration`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ apiEndpoints, data })
+    });
+    return response.json();
+  },
+
+  generateE2ETests: async (userFlow, features) => {
+    const response = await fetch(`${API_URL}/api/v1/tests/e2e`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userFlow, features })
+    });
+    return response.json();
+  },
+
+  generateCoverageReport: async (testResults) => {
+    const response = await fetch(`${API_URL}/api/v1/tests/coverage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ testResults })
+    });
+    return response.json();
+  },
+
+  getTestBestPractices: async (language = 'javascript') => {
+    const response = await fetch(`${API_URL}/api/v1/tests/best-practices?language=${language}`);
+    return response.json();
+  },
+
   // Authentication
   register: async (email, password, name) => {
     const response = await fetch(`${API_URL}/api/v1/subscriptions/register`, {
