@@ -1,0 +1,39 @@
+{
+  "name": "devtools-pro",
+  "version": "0.1.0",
+  "description": "Professional Developer Tools Platform",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "docs": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "keywords": [
+    "developer-tools",
+    "productivity",
+    "SaaS",
+    "open-source",
+    "ai"
+  ],
+  "author": "iiixiyan",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vue": "^3.3.4",
+    "vite": "^5.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0"
+  }
+}
